@@ -4,6 +4,12 @@
 
 
 #include "Arduino.h"
+#ifdef __cplusplus
+#define EXTERN_C    extern "C"
+#else
+#define EXTERN_C
+#endif
+
 
 void init(void) {
 }
@@ -17,6 +23,7 @@ void pinMode(uint8_t pin, uint8_t mode) {
 
 }
 
+EXTERN_C
 void digitalWrite(uint8_t pin, uint8_t val) {
 
 }

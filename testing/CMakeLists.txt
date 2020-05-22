@@ -44,16 +44,28 @@ file(GLOB INCLUDEFILES ${CMAKE_SOURCE_DIR}/../library/include/arduinowrapper/*.h
 #set(arduinowrapper_SRCS {SRCFILES})
 #set(arduinowrapper_HDRS ${INCLUDESFILES})
 include_directories("${CMAKE_SOURCE_DIR}/../library/include")
-include_directories("${CMAKE_SOURCE_DIR}/mockarduino")
+include_directories(BEFORE "${CMAKE_SOURCE_DIR}/mockarduino")
 add_library(library STATIC ${SRCFILES})
 #add_dependencies(library ${INCLUDEFILES})
 
-add_executable(testing mockarduino/mockarduino.cpp testing_tcase1.cpp)
-add_dependencies(testing library)
+add_executable(TC001_pins mockarduino/mockarduino.cpp testcases/TC001_pins.cpp)
+add_dependencies(TC001_pins library)
+target_link_libraries(TC001_pins gtest_main)
+target_link_libraries(TC001_pins library)
 
-target_link_libraries(testing gtest_main)
-target_link_libraries(testing library)
+add_executable(TC002_interrupts mockarduino/mockarduino.cpp testcases/TC002_interrupts.cpp)
+add_dependencies(TC002_interrupts library)
+target_link_libraries(TC002_interrupts gtest_main)
+target_link_libraries(TC002_interrupts library)
+
+add_executable(TC003_advancedio mockarduino/mockarduino.cpp testcases/TC003_advancedio.cpp)
+add_dependencies(TC003_advancedio library)
+target_link_libraries(TC003_advancedio gtest_main)
+target_link_libraries(TC003_advancedio library)
 
 enable_testing()
 
-add_test(NAME test_testing COMMAND testing)
+add_test(NAME TC001_pins COMMAND TC001_pins)
+add_test(NAME TC002_interrupts COMMAND TC002_interrupts)
+add_test(NAME TC003_advancedio COMMAND TC003_advancedio)
+

@@ -1,19 +1,23 @@
 #ifndef _ARDUINOWRAPPER_PIN_H_
 #define _ARDUINOWRAPPER_PIN_H_
 
-class AWPin {
+
+class Pin {
 protected:
+
     int pinNumber_;
 
-    AWPin(int pinNumber) {
+public:
+
+    Pin(int pinNumber) {
         this->pinNumber_ = pinNumber;
     }
 
-    AWPin(AWPin &other) {
+    Pin(Pin &other) {
         this->pinNumber_ = other.pinNumber_;
     }
 
-    virtual ~AWPin() {
+    virtual ~Pin() {
     }
 
     void init(int pinNumber) {
@@ -22,13 +26,14 @@ protected:
 
 public:
 
-    virtual AWPin &operator = (AWPin &pin) {
+    virtual Pin &operator = (Pin &pin) {
         this->pinNumber_ = pin.pinNumber_;
+        return *this;
     }
 
-    virtual void write(int value) = 0;
-
-    virtual int read() = 0;
+    operator int () {
+        return this->pinNumber_;
+    }
 };
 
 #endif //_ARDUINOWRAPPER_PIN_H_

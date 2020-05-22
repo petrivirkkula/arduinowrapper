@@ -1,10 +1,12 @@
 #ifndef _ARDUINBOWRAPPER_ANALOGPIN_H_
 #define _ARDUINBOWRAPPER_ANALOGPIN_H_
 
-#include "Arduino.h"
-#include "arduinowrapper/AWPin.h"
+#include <Arduino.h>
+#include "arduinowrapper/Pin.h"
+#include "arduinowrapper/Readable.h"
+#include "arduinowrapper/Writable.h"
 
-class AWAnalogPin : public AWPin {
+class AnalogPin : public Pin, public Readable, public Writable {
 public:
     enum ReferenceVoltage {
         ReferenceVoltageDEFAULT = DEFAULT,
@@ -25,14 +27,22 @@ public:
 //        ReferenceVoltageINTERNAL4V3 = INTERNAL4V3
     };
 public:
-    AWAnalogPin(int pinNumber) : AWPin(pinNumber) {
+    AnalogPin(int pinNumber) : Pin(pinNumber) {
     }
 
-    ~AWAnalogPin() {
+    AnalogPin(AnalogPin &analogPin) : Pin(analogPin) {
+    }
+
+    ~AnalogPin() {
     }
 
     void init(int pinNumber) {
-        AWPin::init(pinNumber);
+        Pin::init(pinNumber);
+    }
+
+    AnalogPin &operator = (AnalogPin &pin) {
+        this->pinNumber_ = pin.pinNumber_;
+        return *this;
     }
 
     static void setReferenceVoltage(ReferenceVoltage referenceVoltage);
