@@ -50,5 +50,3 @@ file(GLOB INCLUDEFILES include/arduinowrapper/*.h)
 set(arduinowrapper_SRCS ${SRCFILES})
 set(arduinowrapper_HDRS ${INCLUDESFILES})
 generate_arduino_library(arduinowrapper)
-
-set(arduinowrapper_library arduinowrapper CACHE STRING "Library" FORCE)
