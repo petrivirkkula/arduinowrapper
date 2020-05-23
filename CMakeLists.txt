@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(arduiwrapper-root)
+project(arduiwrapperroot)
 
 set(CMAKE_CXX_STANDARD 11)
 
