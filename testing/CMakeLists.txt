@@ -39,12 +39,12 @@ if (CMAKE_VERSION VERSION_LESS 2.8.11)
 endif()
 
 
-file(GLOB SRCFILES ${CMAKE_SOURCE_DIR}/../library/src/*.cpp)
-file(GLOB INCLUDEFILES ${CMAKE_SOURCE_DIR}/../library/include/arduinowrapper/*.h)
+file(GLOB SRCFILES ${CMAKE_CURRENT_SOURCE_DIR}/../library/src/*.cpp)
+file(GLOB INCLUDEFILES ${CMAKE_CURRENT_SOURCE_DIR}/../library/include/arduinowrapper/*.h)
 #set(arduinowrapper_SRCS {SRCFILES})
 #set(arduinowrapper_HDRS ${INCLUDESFILES})
-include_directories("${CMAKE_SOURCE_DIR}/../library/include")
-include_directories(BEFORE "${CMAKE_SOURCE_DIR}/mockarduino")
+include_directories("${CMAKE_CURRENT_SOURCE_DIR}/../library/include")
+include_directories(BEFORE "${CMAKE_CURRENT_SOURCE_DIR}/mockarduino")
 add_library(library STATIC ${SRCFILES})
 #add_dependencies(library ${INCLUDEFILES})
 
