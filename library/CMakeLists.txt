@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8.4)
 set(CMAKE_TOOLCHAIN_FILE ${CMAKE_CURRENT_SOURCE_DIR}/cmake/ArduinoToolchain.cmake)
 set(CMAKE_CXX_STANDARD 11)
-set(PROJECT_NAME arduinowrapperlibrary)
+set(PROJECT_NAME arduinowrapperlib)
 
 set(${PROJECT_NAME}_BOARD yun)
 # set(ARDUINO_CPU)
@@ -39,14 +39,16 @@ set(${PROJECT_NAME}_LIBS)
 ## Verbose build process
 set(${PROJECT_NAME}_AFLAGS -v)
 
-generate_arduino_firmware(${PROJECT_NAME})
+#generate_arduino_firmware(${PROJECT_NAME})
 
 
-print_board_list()
-print_programmer_list()
+#print_board_list()
+#print_programmer_list()
 
 file(GLOB SRCFILES src/*.cpp)
 file(GLOB INCLUDEFILES include/arduinowrapper/*.h)
 set(arduinowrapper_SRCS ${SRCFILES})
 set(arduinowrapper_HDRS ${INCLUDESFILES})
 generate_arduino_library(arduinowrapper)
+
+set(arduinowrapper_library arduinowrapper CACHE STRING "Library" FORCE)
